@@ -6,7 +6,7 @@ import logging
 class BaseConfig(BaseSettings):
     """Base Configuration"""
 
-    ENVIRONMENT: Optional[str] = Field('local', env='ENVIRONMENT')
+    ENVIRONMENT: Optional[str] = Field('dev', env='ENVIRONMENT')
 
     """Secrets"""
     BROKER_URL: Optional[str]
