@@ -1,28 +1,36 @@
-from typing import Any
 from flask import Flask
 
-from src.config import ConfigManager
+from src.configs.config_manager import ApiConfigManager
 
 
 def create_app() -> Flask:
     app = Flask(__name__)
 
-    config = ConfigManager.init_config()
+    config = ApiConfigManager.init_config()
     app.config.from_object(config)
 
-    from src.logs.log_manager import LogManager
+    from src.api.helpers.error_handler import ErrorHandler
+    ErrorHandler.initialize(app)
+
+    from src.infrastructure.logging.log_manager import LogManager
     LogManager.init_logger(config)
 
-    from src.database.db_manager import DBManager
-    DBManager.start_db()
-
-    # Add tasks
-    from src.tasks import cron_job
+    from src.api.helpers.api_manager import APIManager
+    APIManager(app)
 
     from flask_cors import CORS
     CORS(app)
 
-    from src.helpers.api_manager import APIManager
-    APIManager(app)
+    from src.infrastructure.db.db_manager import DBManager
+    DBManager.start_db(app)
+
+    from src.infrastructure.persistence.redis_manager import RedisManager
+    RedisManager.init_redis(config)
+
+    from src.api.injection import ContainerManager
+    ContainerManager.init_containers()
+
+    from src.infrastructure.security.basic_auth_manager import BasicAuthManager
+    BasicAuthManager.init_basic_auth_manager(app, config)
 
     return app
