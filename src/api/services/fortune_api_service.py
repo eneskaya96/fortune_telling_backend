@@ -1,6 +1,7 @@
 import logging
 from typing import Optional
 
+from src.api.models.dto.fortune.fortune_request_dto import FortuneRequestDto
 from src.api.services.base.base_service import BaseService
 from src.domain.fortune.entities.fortune import Fortune
 from src.domain.seed_work.repository.unit_of_work import UnitOfWork
@@ -29,3 +30,16 @@ class FortuneApiService(BaseFortuneApiService, BaseService):
         fortune = Fortune.create_fortune("random_word")
 
         return fortune
+
+    def create_fortune(self, fortune_request_dto: FortuneRequestDto) -> Fortune:
+        """
+        Create a new fortune and returns it
+        :param fortune_request_dto
+        """
+
+        new_fortune = Fortune.create_fortune(fortune_request_dto.fortune)
+
+        with self.uow:
+            self.uow.fortunes.insert(new_fortune)
+
+        return new_fortune

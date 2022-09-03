@@ -12,4 +12,4 @@ class FortuneRepository(BaseGenericRepository[DomainFortune], FortuneDomainRepos
         super().__init__(Fortune, DomainFortune)
 
     def get_fortune_with_offset(self, offset: int) -> Optional[Fortune]:
-        return self.query.one_or_none()
+        return self.query.offset(offset).first()

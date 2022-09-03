@@ -1,6 +1,8 @@
 from typing import List, Any
 
 from flask_restx import Namespace
+
+from src.api.models.dto.fortune.fortune_request_dto import FortuneRequestDto
 from src.api.models.dto.fortune.fortune_response_dto import FortuneResponseDto
 
 
@@ -8,6 +10,8 @@ from src.api.models.dto.fortune.fortune_response_dto import FortuneResponseDto
 def create_schemas(api: Namespace) -> List[Any]:
     return [
         # request dtos
+        api.schema_model('FortuneRequestDto', FortuneRequestDto.schema()),
+
         # response dtos
         api.schema_model('FortuneResponseDto', FortuneResponseDto.schema()),
 
