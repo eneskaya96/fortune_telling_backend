@@ -7,13 +7,11 @@ RUN apt-get install -y --no-install-recommends libatlas-base-dev gfortran nginx 
 COPY requirements.txt /
 RUN pip install -r /requirements.txt
 
-WORKDIR /code
+WORKDIR /app
 
 
 ENV FLASK_APP=src/app.py
 ENV FLASK_RUN_HOST=0.0.0.0
-#ENV FLASK_RUN_PORT=5000
-ENV FLASK_DEBUG=1
 
 
 ENV MYSQL_HOST=172.23.0.1
@@ -23,6 +21,9 @@ ENV MYSQL_DB_NAME=fortune
 
 EXPOSE 5000
 COPY . .
-CMD [ "flask", "run"]
+
+#CMD gunicorn "src.app:create_app()"
 
 #CMD [ "python", "./start.py"]
+
+CMD [ "flask", "run"]
