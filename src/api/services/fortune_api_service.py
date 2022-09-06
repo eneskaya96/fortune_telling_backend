@@ -42,4 +42,5 @@ class FortuneApiService(BaseFortuneApiService, BaseService):
         with self.uow:
             self.uow.fortunes.insert(new_fortune)
 
+        self.logger.info(f'Fortune {fortune_request_dto.fortune} is created')
         return new_fortune

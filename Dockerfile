@@ -13,6 +13,8 @@ WORKDIR /app
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
+ENV GRAYLOG_IP=host.docker.internal
+ENV GRAYLOG_PORT=12201
 
 ENV ENVIRONMENT="dev"
 ENV MYSQL_HOST=host.docker.internal
