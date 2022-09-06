@@ -11,8 +11,18 @@ class GlobalConfig(BaseConfig):
     """Global Configuration"""
 
     """Secrets"""
+    FORTUNE_API_URL: Optional[str]
+    BROKER_URL: Optional[str]
 
     """Configurations"""
+    WORKER_CONCURRENCY: int = Field(1)
+
+    FORTUNE_API_READ_TIMEOUT: float = Field(4.0)
+    FORTUNE_API_NUMBER_OF_RETRIES: int = Field(1)
+    FORTUNE_API_CONNECT_TIMEOUT: float = Field(1.0)
+
+    BEAT_CREATE_FORTUNE_INTERVAL: int = Field(30)
+    EXPIRE_TIME_OF_TASKS: int = Field(600, env='EXPIRE_TIME_OF_TASKS')
 
     class Config:
         extra = Extra.allow

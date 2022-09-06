@@ -4,3 +4,6 @@ services:
     build: .
     ports:
       - "8000:5000"
+
+  beat_worker:
+    build: ./celery_beat/.

@@ -148,3 +148,5 @@ cython_debug/
 src/envs/*.env
 *.env
 !src/envs/sample.env
+/celerybeat-schedule.dat
+/celerybeat-schedule.dir
