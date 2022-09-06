@@ -10,20 +10,18 @@ RUN pip install -r /requirements.txt
 WORKDIR /app
 
 
-ENV FLASK_APP=src/app.py
+ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 
-ENV MYSQL_HOST=172.23.0.1
+ENV ENVIRONMENT="dev"
+ENV MYSQL_HOST=host.docker.internal
 ENV MYSQL_PASSWORD=123456
 ENV MYSQL_USER=user
 ENV MYSQL_DB_NAME=fortune
 
-EXPOSE 5000
 COPY . .
 
-#CMD gunicorn "src.app:create_app()"
-
-#CMD [ "python", "./start.py"]
+WORKDIR /app/src
 
 CMD [ "flask", "run"]

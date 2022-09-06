@@ -17,3 +17,6 @@ If you create empty revision file, create with this command:
 If you want to downgrade to a specific revision of a migration:
 
     flask db downgrade <revision_id>
+
+
+Flask Run http://localhost:8000/fortune_teller/v1/

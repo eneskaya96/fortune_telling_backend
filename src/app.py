@@ -1,10 +1,11 @@
 from flask import Flask
 
+from src.configs.config_manager import ApiConfigManager
+
 
 def create_app() -> Flask:
     app = Flask(__name__)
 
-    from src.configs.config_manager import ApiConfigManager
     config = ApiConfigManager.init_config()
     app.config.from_object(config)
 
@@ -21,7 +22,7 @@ def create_app() -> Flask:
     CORS(app)
 
     from src.infrastructure.db.db_manager import DBManager
-    #DBManager.start_db(app)
+    DBManager.start_db(app)
 
     from src.infrastructure.persistence.redis_manager import RedisManager
     RedisManager.init_redis(config)
