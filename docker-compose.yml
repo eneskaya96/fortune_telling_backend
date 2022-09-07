@@ -6,4 +6,6 @@ services:
       - "8000:5000"
 
   beat_worker:
-    build: ./celery_beat/.
+    build:
+      context: .
+      dockerfile: ./celery_beat/Dockerfile
