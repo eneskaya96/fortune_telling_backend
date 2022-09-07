@@ -21,7 +21,7 @@ class GlobalConfig(BaseConfig):
     FORTUNE_API_NUMBER_OF_RETRIES: int = Field(1)
     FORTUNE_API_CONNECT_TIMEOUT: float = Field(1.0)
 
-    BEAT_CREATE_FORTUNE_INTERVAL: int = Field(30)
+    BEAT_CREATE_FORTUNE_INTERVAL: int = Field(1)
     EXPIRE_TIME_OF_TASKS: int = Field(600, env='EXPIRE_TIME_OF_TASKS')
 
     class Config:

@@ -17,11 +17,10 @@ ENV ENVIRONMENT="dev"
 ENV AUTH_USERNAME=test
 ENV AUTH_PASSWORD=test
 ENV FORTUNE_API_URL=http://localhost:8000/
-ENV BROKER_URL=amqp://user:123456@localhost:15672/
+ENV BROKER_URL=amqp://user:123456@host.docker.internal:5672/
 
+RUN chmod +777 start.sh
 
-RUN celery -A src.worker beat -l INFO
-
-CMD [ "python", "celery_beat/start.py"]
+ENTRYPOINT ["./start.sh"]
 
 
