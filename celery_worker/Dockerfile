@@ -5,8 +5,8 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends libatlas-base-dev gfortran nginx supervisor
 
 
-WORKDIR /app_celery
-COPY . /app_celery
+WORKDIR /app_worker
+COPY . /app_worker
 
 RUN pip install -r requirements.txt
 
@@ -19,8 +19,8 @@ ENV AUTH_PASSWORD=test
 ENV FORTUNE_API_URL=http://localhost:8000/
 ENV BROKER_URL=amqp://user:123456@host.docker.internal:5672/
 
-RUN chmod +777 start_beat.sh
+RUN chmod +777 start_worker.sh
 
-ENTRYPOINT ["./start_beat.sh"]
+ENTRYPOINT ["./start_worker.sh"]
 
 

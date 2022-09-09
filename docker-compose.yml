@@ -5,7 +5,12 @@ services:
     ports:
       - "8000:5000"
 
-  beat_worker:
+  beat_beat:
     build:
       context: .
       dockerfile: ./celery_beat/Dockerfile
+
+  beat_worker:
+    build:
+      context: .
+      dockerfile: ./celery_worker/Dockerfile
