@@ -16,7 +16,7 @@ ENV GRAYLOG_PORT=12201
 ENV ENVIRONMENT="dev"
 ENV AUTH_USERNAME=test
 ENV AUTH_PASSWORD=test
-ENV FORTUNE_API_URL=http://localhost:8000/
+ENV FORTUNE_API_URL=http://host.docker.internal:8000/
 ENV BROKER_URL=amqp://user:123456@host.docker.internal:5672/
 
 RUN chmod +777 start_worker.sh

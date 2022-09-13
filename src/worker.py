@@ -42,7 +42,7 @@ def __prepare_beat_schedule() -> Dict[str, Any]:
     schedule: Dict[str, Any] = {
         'beat_create_fortune': {
             'task': 'src.tasks.beats.beat_create_fortune',
-            'schedule': timedelta(seconds=configuration.BEAT_CREATE_FORTUNE_INTERVAL),
+            'schedule': timedelta(minutes=configuration.BEAT_CREATE_FORTUNE_INTERVAL),
             'options': {'expires': configuration.EXPIRE_TIME_OF_TASKS}
         }
     }

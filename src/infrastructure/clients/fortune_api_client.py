@@ -97,7 +97,7 @@ class FortuneApiClient:
         response = cls.__send_request(
             method='POST',
             url=endpoint,
-            json=fortune_request,
+            json=fortune_request.dict(),
             auth=cls.__get_auth()
         )
         cls.__check_response(response)
